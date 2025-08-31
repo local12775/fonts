@@ -4,7 +4,7 @@
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff2") format("woff2"),
        url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff") format("woff");
   font-weight: 700;
-  font-style: normal;
+  font-style: bold;
   font-display: swap;
 }
 
