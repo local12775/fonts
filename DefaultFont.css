@@ -1,49 +1,48 @@
-/* === Futura PT Regular (400 normal) === */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011002T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011002T.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+/* 1) Make sure italics are actually italic everywhere */
+em, i {
+  font-style: italic !important;
+  font-weight: inherit !important; /* don't fake-bold italics */
 }
 
-/* === Futura PT Italic (400 italic) === */
+/* 2) Keep bold semantics normal */
+b, strong {
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+
+/* 3) Stop the browser from synthesizing faux bold/italic */
+html, body {
+  font-synthesis: none;               /* modern */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4) Safety net: some Kintone bits use 500/600 weights for emphasis.
+      Map those weights to your real files so no “semi-bold italics” happens. */
+/* — If your italic file is F011003T.woff2/.woff — */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
        url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 400;
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 600;
   font-style: italic;
   font-display: swap;
 }
 
-/* === Futura PT Bold (700 normal) === */
+/* — If your bold file is F011005T.woff2/.woff — map 600 to bold as well */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
        url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff") format("woff");
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
-
-/* === Futura PT Bold Italic (700 italic) === */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff") format("woff");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* === Global override to force Futura PT === */
-html, body, * {
-  font-family: "Futura PT", "Segoe UI", Arial, sans-serif !important;
-}
-
-input, textarea, select, button {
-  font-family: inherit !important;
-}
-
