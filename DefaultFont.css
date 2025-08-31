@@ -1,24 +1,76 @@
-/* Futura PT Regular only for now */
+/* ================================
+   Futura PT Webfont Declarations
+   Files hosted via jsDelivr (GitHub CDN)
+   Repo: local12775/fonts @ main
+   Faces:
+     - F011002T → Regular (400 normal)
+     - F011003T → Italic  (400 italic)
+     - F011005T → Bold    (700 normal)
+     - F011006T → Bold It (700 italic)
+   ================================ */
+
+/* Regular (400 normal) */
 @font-face {
   font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011002T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011002T.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-/* Apply globally */
-html, body, * {
-  font-family: "Futura PT", "Segoe UI", Arial, sans-serif !important;
+/* Italic (400 italic) */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
 }
 
-input, textarea, select, button {
-  font-family: inherit !important;
+/* Bold (700 normal) */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* Bold Italic (700 italic) */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
-/* — If your bold file is F011005T.woff2/.woff — map 600 to bold as well */
+/* --- Map common “semibold” requests to real faces --- */
+/* Some UIs request 500/600 for emphasis. Map them to your real fonts. */
+
+/* 500 & 600 italic → use the actual italic file */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* 600 normal (non-italic) → map to Bold file for consistent thickness */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
@@ -26,4 +78,65 @@ input, textarea, select, button {
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+}
+
+/* Some stacks ask for oblique instead of italic — cover that too */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 400;
+  font-style: oblique 12deg;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 600;
+  font-style: oblique 12deg;
+  font-display: swap;
+}
+
+/* ================================
+   Global Application & Fixes
+   ================================ */
+
+/* Force Futura PT everywhere with sensible fallbacks */
+html, body, * {
+  font-family: "Futura PT", "Segoe UI", Arial, Helvetica, sans-serif !important;
+}
+
+/* Ensure form controls inherit properly */
+input, textarea, select, button {
+  font-family: inherit !important;
+}
+
+/* Use true italics (not fake “heavier weight” italics) */
+em, i {
+  font-style: italic !important;
+  font-weight: inherit !important;
+}
+
+/* Keep bold semantics clean */
+b, strong {
+  font-weight: 700 !important;
+  font-style: normal !important;
+}
+
+/* Prevent browser from synthesizing fake bold/italic; improve rasterization */
+html, body {
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nudge common Kintone containers to honor italics */
+.gaia-argoui-portal * em,
+.gaia-argoui-portal * i,
+.kintone-app-view * em,
+.kintone-app-view * i,
+.kintone-app-record * em,
+.kintone-app-record * i {
+  font-style: italic !important;
 }
