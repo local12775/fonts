@@ -8,6 +8,36 @@
   font-display: swap;
 }
 
+/* === Futura PT Italic (400 italic) === */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* === Futura PT Bold (700 normal) === */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Futura PT Bold Italic (700 italic) === */
+@font-face {
+  font-family: "Futura PT";
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* === Global override to force Futura PT === */
 html, body, * {
   font-family: "Futura PT", "Segoe UI", Arial, sans-serif !important;
@@ -16,3 +46,4 @@ html, body, * {
 input, textarea, select, button {
   font-family: inherit !important;
 }
+
