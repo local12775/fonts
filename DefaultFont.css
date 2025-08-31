@@ -1,136 +1,18 @@
-/* ================================
-   Futura PT – webfonts via jsDelivr
-   Repo: local12775/fonts @ main
-   Files:
-     - F011002T → Regular (400 normal)
-     - F011003T → Italic  (400 italic)
-     - F011005T → Bold    (700 normal)
-     - F011006T → Bold It (700 italic)
-   ================================ */
-
-/* Regular (400 normal) */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011002T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011002T.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Italic (400 italic) */
+/* Futura PT Regular only for now */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
        url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
   font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Bold (700 normal) */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff") format("woff");
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-/* Bold Italic (700 italic) */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff") format("woff");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Map common semibold requests so italics don't “fake bold” */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-/* 600 normal → align with Bold for consistency */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ================================
-   Global application & italic fixes
-   ================================ */
-
-/* Force Futura PT everywhere */
+/* Apply globally */
 html, body, * {
-  font-family: "Futura PT", "Segoe UI", Arial, Helvetica, sans-serif !important;
+  font-family: "Futura PT", "Segoe UI", Arial, sans-serif !important;
 }
 
-/* Ensure controls inherit */
 input, textarea, select, button {
   font-family: inherit !important;
 }
-
-/* Clean, predictable semantics */
-b, strong { font-weight: 700 !important; font-style: normal !important; }
-em, i { font-style: italic; } /* baseline; we’ll strengthen below */
-
-/* Prevent browser from synthesizing styles */
-html, body {
-  font-synthesis: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ---------- Editors you provided ---------- */
-/* App rich text editor (your snippet) */
-.editor-cybozu.cybozu-editor-seamless.editable :is(em, i:not([class])), 
-#\\:0\\.kintone-rte-editor :is(em, i:not([class])) {
-  font-style: italic !important;
-  font-weight: inherit !important;
-}
-
-/* Portal text box in EDIT mode (your snippet) */
-.ocean-ui-editor-field.editable.ocean-editor-seamless :is(em, i:not([class])),
-#\\:p\\.field :is(em, i:not([class])) {
-  font-style: italic !important;
-  font-weight: inherit !important;
-}
-
-/* Inline style italics inside those editors */
-.editor-cybozu.cybozu-editor-seamless.editable [style*="font-style:italic"],
-.ocean-ui-editor-field.editable.ocean-editor-seamless [style*="font-style:italic"] {
-  font-style: italic !important;
-  font-weight: inherit !important;
-}
-
-/* ---------- Common rendered shells (non-edit view) ---------- */
-.gaia-argoui-portal :is(em, i:not([class])),
-.gaia-argoui-app-index :is(em, i:not([class])),
-.gaia-argoui-app-show  :is(em, i:not([class])),
-.kintone-app-view      :is(em, i:not([class])),
-.kintone-app-record    :is(em, i:not([class])) {
-  font-style: italic !important;
-  font-weight: inherit !important;
-}
-
-/* Don’t accidentally italicize icon fonts (<i class="...">) */
-i[class] { font-style: normal !important; }
