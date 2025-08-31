@@ -17,12 +17,45 @@ input, textarea, select, button {
   font-family: inherit !important;
 }
 
-/* Optional tighter scope using :has() (Chrome/Edge/Safari modern) */
-body:has(.ocean-ui-search, .ocean-search-result, [class^="_appResultTitle_"], [class^="_spaceResultTitle_"]) 
-  strong {
-  background-color: #FFCE3C !important;
+/* ==== Search page highlight: force orange on matched keywords ==== */
+/* Titles/snippets in various search result UIs */
+.ocean-ui-search strong,
+.ocean-search-result strong,
+.ocean-ui-search-result strong,
+div[class^="_appResultTitle_"] strong,
+div[class^="_spaceResultTitle_"] strong,
+div[class^="_threadResultTitle_"] strong,
+div[class*="ResultSnippet"] strong,
+div[class^="_appResultSnippet_"] strong,
+div[class^="_spaceResultSnippet_"] strong,
+div[class^="_threadResultSnippet_"] strong,
+/* Fallback: when the page *has* search containers, style all <strong> */
+body:has(.ocean-ui-search, .ocean-search-result, .ocean-ui-search-result, [class^="_appResultTitle_"], [class^="_spaceResultTitle_"], [class^="_threadResultTitle_"]) strong {
+  background-color: #FFCE3C !important; /* orangish */
   color: #333 !important;
   padding: 2px 4px !important;
   border-radius: 4px !important;
   font-weight: 700 !important;
+  /* Make background survive line wraps */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  display: inline; /* ensure it remains inline text */
+}
+
+/* If Kintone applies explicit background to <strong>, wipe it first */
+.ocean-ui-search strong,
+.ocean-search-result strong,
+.ocean-ui-search-result strong,
+div[class*="ResultSnippet"] strong {
+  background-image: none !important;
+  text-shadow: none !important;
+}
+
+/* Avoid affecting rich-text editors while typing */
+.editor-cybozu.cybozu-editor-seamless.editable strong,
+.ocean-ui-editor-field.editable.ocean-editor-seamless strong {
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  color: inherit !important;
 }
