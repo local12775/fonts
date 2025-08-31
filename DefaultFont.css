@@ -1,6 +1,6 @@
 /* ================================
    Futura PT Webfont Declarations
-   Files hosted via jsDelivr (GitHub CDN)
+   Files via jsDelivr
    Repo: local12775/fonts @ main
    Faces:
      - F011002T → Regular (400 normal)
@@ -49,10 +49,7 @@
   font-display: swap;
 }
 
-/* --- Map common “semibold” requests to real faces --- */
-/* Some UIs request 500/600 for emphasis. Map them to your real fonts. */
-
-/* 500 & 600 italic → use the actual italic file */
+/* Map common semibold requests so italics don't fake-bold */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
@@ -69,8 +66,7 @@
   font-style: italic;
   font-display: swap;
 }
-
-/* 600 normal (non-italic) → map to Bold file for consistent thickness */
+/* 600 normal → align with Bold */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
@@ -80,29 +76,11 @@
   font-display: swap;
 }
 
-/* Some stacks ask for oblique instead of italic — cover that too */
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 400;
-  font-style: oblique 12deg;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 600;
-  font-style: oblique 12deg;
-  font-display: swap;
-}
-
 /* ================================
    Global Application & Fixes
    ================================ */
 
-/* Force Futura PT everywhere with sensible fallbacks */
+/* Force Futura PT everywhere */
 html, body, * {
   font-family: "Futura PT", "Segoe UI", Arial, Helvetica, sans-serif !important;
 }
@@ -112,31 +90,35 @@ input, textarea, select, button {
   font-family: inherit !important;
 }
 
-/* Use true italics (not fake “heavier weight” italics) */
-em, i {
-  font-style: italic !important;
-  font-weight: inherit !important;
-}
-
 /* Keep bold semantics clean */
 b, strong {
   font-weight: 700 !important;
   font-style: normal !important;
 }
 
-/* Prevent browser from synthesizing fake bold/italic; improve rasterization */
+/* Prevent fake bold/italic; improve rasterization */
 html, body {
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Nudge common Kintone containers to honor italics */
-.gaia-argoui-portal * em,
-.gaia-argoui-portal * i,
-.kintone-app-view * em,
-.kintone-app-view * i,
-.kintone-app-record * em,
-.kintone-app-record * i {
+/* --- Re-enable true italics in Kintone shells --- */
+/* Use high-specificity container selectors and avoid icon <i> (which have classes) */
+:where(.gaia-argoui-portal, .gaia-argoui-app-index, .gaia-argoui-app-show, .kintone-app-view, .kintone-app-record) 
+  :is(em, i:not([class])) {
   font-style: italic !important;
+  font-weight: inherit !important;
+}
+
+/* Also handle inline rich text spans that carry inline styles */
+:where(.gaia-argoui-portal, .gaia-argoui-app-index, .gaia-argoui-app-show, .kintone-app-view, .kintone-app-record) 
+  [style*="font-style:italic"] {
+  font-style: italic !important;
+}
+
+/* Special-case the editor container (like the one you pasted) */
+.editor-cybozu.cybozu-editor-seamless.editable :is(em, i:not([class])) {
+  font-style: italic !important;
+  font-weight: inherit !important;
 }
