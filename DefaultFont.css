@@ -1,41 +1,22 @@
-/* 1) Make sure italics are actually italic everywhere */
-em, i {
-  font-style: italic !important;
-  font-weight: inherit !important; /* don't fake-bold italics */
-}
-
-/* 2) Keep bold semantics normal */
-b, strong {
-  font-weight: 700 !important;
-  font-style: normal !important;
-}
-
-/* 3) Stop the browser from synthesizing faux bold/italic */
-html, body {
-  font-synthesis: none;               /* modern */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* 4) Safety net: some Kintone bits use 500/600 weights for emphasis.
-      Map those weights to your real files so no “semi-bold italics” happens. */
-/* — If your italic file is F011003T.woff2/.woff — */
+/* Futura PT Regular only for now */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
        url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 500;
-  font-style: italic;
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
+
+/* Apply globally */
+html, body, * {
+  font-family: "Futura PT", "Segoe UI", Arial, sans-serif !important;
 }
+
+input, textarea, select, button {
+  font-family: inherit !important;
+}
+
 
 /* — If your bold file is F011005T.woff2/.woff — map 600 to bold as well */
 @font-face {
