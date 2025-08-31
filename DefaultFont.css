@@ -3,8 +3,8 @@
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff2") format("woff2"),
        url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011006T.woff") format("woff");
-  font-weight: 700;
-  font-style: bold;
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
 }
 
