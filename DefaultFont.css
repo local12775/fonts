@@ -1,8 +1,7 @@
 /* ================================
-   Futura PT Webfont Declarations
-   Files via jsDelivr
+   Futura PT – webfonts via jsDelivr
    Repo: local12775/fonts @ main
-   Faces:
+   Files:
      - F011002T → Regular (400 normal)
      - F011003T → Italic  (400 italic)
      - F011005T → Bold    (700 normal)
@@ -49,7 +48,7 @@
   font-display: swap;
 }
 
-/* Map common semibold requests so italics don't fake-bold */
+/* Map common semibold requests so italics don't “fake bold” */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
@@ -66,7 +65,7 @@
   font-style: italic;
   font-display: swap;
 }
-/* 600 normal → align with Bold */
+/* 600 normal → align with Bold for consistency */
 @font-face {
   font-family: "Futura PT";
   src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
@@ -77,7 +76,7 @@
 }
 
 /* ================================
-   Global Application & Fixes
+   Global application & italic fixes
    ================================ */
 
 /* Force Futura PT everywhere */
@@ -85,40 +84,53 @@ html, body, * {
   font-family: "Futura PT", "Segoe UI", Arial, Helvetica, sans-serif !important;
 }
 
-/* Ensure form controls inherit properly */
+/* Ensure controls inherit */
 input, textarea, select, button {
   font-family: inherit !important;
 }
 
-/* Keep bold semantics clean */
-b, strong {
-  font-weight: 700 !important;
-  font-style: normal !important;
-}
+/* Clean, predictable semantics */
+b, strong { font-weight: 700 !important; font-style: normal !important; }
+em, i { font-style: italic; } /* baseline; we’ll strengthen below */
 
-/* Prevent fake bold/italic; improve rasterization */
+/* Prevent browser from synthesizing styles */
 html, body {
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Re-enable true italics in Kintone shells --- */
-/* Use high-specificity container selectors and avoid icon <i> (which have classes) */
-:where(.gaia-argoui-portal, .gaia-argoui-app-index, .gaia-argoui-app-show, .kintone-app-view, .kintone-app-record) 
-  :is(em, i:not([class])) {
+/* ---------- Editors you provided ---------- */
+/* App rich text editor (your snippet) */
+.editor-cybozu.cybozu-editor-seamless.editable :is(em, i:not([class])), 
+#\\:0\\.kintone-rte-editor :is(em, i:not([class])) {
   font-style: italic !important;
   font-weight: inherit !important;
 }
 
-/* Also handle inline rich text spans that carry inline styles */
-:where(.gaia-argoui-portal, .gaia-argoui-app-index, .gaia-argoui-app-show, .kintone-app-view, .kintone-app-record) 
-  [style*="font-style:italic"] {
-  font-style: italic !important;
-}
-
-/* Special-case the editor container (like the one you pasted) */
-.editor-cybozu.cybozu-editor-seamless.editable :is(em, i:not([class])) {
+/* Portal text box in EDIT mode (your snippet) */
+.ocean-ui-editor-field.editable.ocean-editor-seamless :is(em, i:not([class])),
+#\\:p\\.field :is(em, i:not([class])) {
   font-style: italic !important;
   font-weight: inherit !important;
 }
+
+/* Inline style italics inside those editors */
+.editor-cybozu.cybozu-editor-seamless.editable [style*="font-style:italic"],
+.ocean-ui-editor-field.editable.ocean-editor-seamless [style*="font-style:italic"] {
+  font-style: italic !important;
+  font-weight: inherit !important;
+}
+
+/* ---------- Common rendered shells (non-edit view) ---------- */
+.gaia-argoui-portal :is(em, i:not([class])),
+.gaia-argoui-app-index :is(em, i:not([class])),
+.gaia-argoui-app-show  :is(em, i:not([class])),
+.kintone-app-view      :is(em, i:not([class])),
+.kintone-app-record    :is(em, i:not([class])) {
+  font-style: italic !important;
+  font-weight: inherit !important;
+}
+
+/* Don’t accidentally italicize icon fonts (<i class="...">) */
+i[class] { font-style: normal !important; }
