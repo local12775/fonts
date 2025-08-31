@@ -17,23 +17,12 @@ input, textarea, select, button {
   font-family: inherit !important;
 }
 
-/* === Kintone Search: highlight matched keywords in orange === */
-/* Titles */
-div[class^="_appResultTitle_"] strong,
-div[class^="_spaceResultTitle_"] strong,
-div[class^="_threadResultTitle_"] strong,
-/* Snippets / lines under titles */
-div[class*="ResultSnippet"] strong,
-div[class^="_appResultSnippet_"] strong,
-div[class^="_spaceResultSnippet_"] strong,
-div[class^="_threadResultSnippet_"] strong,
-/* Generic catch-alls for search result containers */
-.ocean-ui-search strong,
-.ocean-search-result strong,
-.ocean-ui-search-result strong {
-  background-color: #FFCE3C !important; /* orangish */
+/* Optional tighter scope using :has() (Chrome/Edge/Safari modern) */
+body:has(.ocean-ui-search, .ocean-search-result, [class^="_appResultTitle_"], [class^="_spaceResultTitle_"]) 
+  strong {
+  background-color: #FFCE3C !important;
   color: #333 !important;
   padding: 2px 4px !important;
   border-radius: 4px !important;
-  font-weight: 700 !important; /* keep strong as bold */
+  font-weight: 700 !important;
 }
