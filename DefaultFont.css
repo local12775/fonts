@@ -59,3 +59,8 @@ div[class*="ResultSnippet"] strong {
   border-radius: 0 !important;
   color: inherit !important;
 }
+
+/* === TEST RULE === */
+body {
+  background-color: pink !important;
+}
