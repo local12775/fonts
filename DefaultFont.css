@@ -2,8 +2,8 @@
 /* Futura PT Regular only for now */
 @font-face {
   font-family: "Futura PT";
-  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff2") format("woff2"),
-       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011003T.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/local12775/fonts@main/F011005T.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
